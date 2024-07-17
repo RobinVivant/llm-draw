@@ -39,22 +39,6 @@ export default function App() {
 							},
 						}
 					},
-					tools: (editor, tools) => {
-						return {
-							...tools,
-							'make-real': {
-								id: 'make-real',
-								icon: 'tool',
-								label: 'Make Real',
-								onSelect: () => {
-									handleMakeReal(editor);
-								},
-								onDeselect: () => {
-									editor.setCurrentTool('select')
-								},
-							},
-						}
-					},
 				}}
 			>
 				<div className="api-key-and-button-container">
