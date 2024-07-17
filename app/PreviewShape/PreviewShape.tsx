@@ -11,7 +11,7 @@ import {
 	useIsEditing,
 	useToasts,
 	useValue,
-	IconComponent,
+	Icon,
 } from '@tldraw/tldraw'
 
 export type PreviewShape = TLBaseShape<
@@ -125,7 +125,7 @@ export class PreviewShapeUtil extends BaseBoxShapeUtil<PreviewShape> {
 					}}
 					onPointerDown={stopEventPropagation}
 				>
-					<IconComponent icon="duplicate" />
+					<Icon icon="duplicate" />
 				</div>
 				{htmlToUse && (
 					<div
