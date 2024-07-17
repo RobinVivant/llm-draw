@@ -23,7 +23,7 @@ export async function makeReal(editor: Editor, apiKey: string, prompt: string) {
 	})
 
 	// Remove deleted shapes from persistent storage
-	const allShapes = editor.getShapes()
+	const allShapes = editor.getShapesInPage()
 	const persistedShapes = allShapes.filter(shape => !shape.isDeleted)
 	editor.store.put(persistedShapes)
 
