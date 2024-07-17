@@ -18,7 +18,6 @@ export default function App() {
 		<div className="editor">
 			<Tldraw
 				persistenceKey="make-real"
-				shareZone={<MakeRealButton />}
 				shapeUtils={shapeUtils}
 				components={{
 					ShareZone: MakeRealButton,
