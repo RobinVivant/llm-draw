@@ -20,7 +20,7 @@ You respond with single HTML file containing your high-fidelity prototype.
 
 If there are any questions or underspecified features, you rely on your extensive knowledge of user experience and website design patterns to "fill in the blanks". You know that a good guess is better than an incomplete prototype.
 
-Above all, you love your designers and want them to be happy. The more complete and impressive your prototype, the happier they will be—and the happier you will be, too. Good luck! You've got this! Age quod agis! Virtute et armis! धर्मो रक्षति रक्षित!`
+Above all, you love your designers and want them to be happy. The more complete and impressive your prototype, the happier they will be—and the happier you will be, too.`
 
 export const OPENROUTER_USER_PROMPT =
 	'Your designers have just requested a wireframe for these designs. Respond the COMPLETE prototype as a single HTML file beginning with ```html and ending with ```'
