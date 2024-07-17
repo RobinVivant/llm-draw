@@ -11,7 +11,7 @@ const Tldraw = dynamic(async () => (await import('@tldraw/tldraw')).Tldraw, {
 	ssr: false,
 })
 
-const shapeUtils = [PreviewShapeUtil] as const
+const shapeUtils = [PreviewShapeUtil] as const satisfies readonly [typeof PreviewShapeUtil]
 
 export default function App() {
 	return (
