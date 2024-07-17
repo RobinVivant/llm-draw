@@ -8,10 +8,14 @@ import { PromptInput } from './components/PromptInput'
 import { PreviewShapeUtil } from './PreviewShape/PreviewShape'
 import { makeReal } from './makeReal'
 
+import { Editor } from '@tldraw/tldraw'
+
 const handleMakeReal = (editor: Editor) => {
   const apiKeyInput = document.getElementById('openrouter_key_risky_but_cool') as HTMLInputElement;
   const apiKey = apiKeyInput?.value ?? '';
-  makeReal(editor, apiKey);
+  const promptInput = document.getElementById('prompt-input') as HTMLTextAreaElement;
+  const prompt = promptInput?.value ?? '';
+  makeReal(editor, apiKey, prompt);
 };
 
 const Tldraw = dynamic(async () => (await import('@tldraw/tldraw')).Tldraw, {

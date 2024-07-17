@@ -70,6 +70,20 @@ body {
     opacity: 0.95;
 }
 
+.prompt-input {
+    width: 300px;
+    height: 60px;
+    margin-right: 10px;
+    padding: 5px;
+    border: 1px solid var(--color-panel-contrast);
+    border-radius: var(--radius-2);
+    background: var(--color-panel);
+    color: var(--color-text-0);
+    font-family: inherit;
+    font-size: 14px;
+    resize: vertical;
+}
+
 /* ------------------ Api Key Input ----------------- */
 
 .your-own-api-key {
