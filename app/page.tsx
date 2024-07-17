@@ -2,7 +2,6 @@
 
 import dynamic from 'next/dynamic'
 import '@tldraw/tldraw/tldraw.css'
-import { MakeRealButton } from './components/MakeRealButton'
 import { TldrawLogo } from './components/TldrawLogo'
 import { RiskyButCoolAPIKeyInput } from './components/RiskyButCoolAPIKeyInput'
 import { PreviewShapeUtil } from './PreviewShape/PreviewShape'
@@ -28,13 +27,25 @@ export default function App() {
 								label: 'Make Real',
 								readonlyOk: true,
 								onSelect: () => {
+									editor.setCurrentTool('make-real')
+								},
+							},
+						}
+					},
+					tools: (editor, tools) => {
+						return {
+							...tools,
+							'make-real': {
+								id: 'make-real',
+								icon: 'tool',
+								label: 'Make Real',
+								onSelect: () => {
+									// Implement your Make Real functionality here
+									console.log('Make Real tool selected')
+									// You can call your makeReal function here
+								},
+								onDeselect: () => {
 									editor.setCurrentTool('select')
-									editor.addDialog({
-										component: MakeRealButton,
-										onClose: () => {
-											editor.deleteDialog('make-real')
-										},
-									})
 								},
 							},
 						}
