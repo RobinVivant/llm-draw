@@ -1,6 +1,6 @@
 import { Editor, createShapeId, getSvgAsImage, track } from '@tldraw/tldraw'
 import { getSelectionAsText } from './lib/getSelectionAsText'
-import { getHtmlFromOpenRouter } from './lib/getHtmlFromOpenAI'
+import { getHtmlFromOpenRouter } from './lib/getHtmlFromOpenRouter'
 import { blobToBase64 } from './lib/blobToBase64'
 import { addGridToSvg } from './lib/addGridToSvg'
 import { PreviewShape } from './PreviewShape/PreviewShape'

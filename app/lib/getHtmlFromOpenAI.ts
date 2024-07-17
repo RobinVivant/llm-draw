@@ -29,7 +29,7 @@ export async function getHtmlFromOpenRouter({
 	const messages: GPT4VCompletionRequest['messages'] = [
 		{
 			role: 'system',
-			content: OPEN_AI_SYSTEM_PROMPT,
+			content: OPEN_ROUTER_SYSTEM_PROMPT,
 		},
 		{
 			role: 'user',
@@ -43,7 +43,7 @@ export async function getHtmlFromOpenRouter({
 	userContent.push({
 		type: 'text',
 		text:
-			previousPreviews?.length > 0 ? OPENAI_USER_PROMPT_WITH_PREVIOUS_DESIGN : OPENAI_USER_PROMPT,
+			previousPreviews?.length > 0 ? OPENROUTER_USER_PROMPT_WITH_PREVIOUS_DESIGN : OPENROUTER_USER_PROMPT,
 	})
 
 	// Add the image
