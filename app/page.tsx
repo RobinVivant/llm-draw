@@ -2,7 +2,6 @@
 
 import dynamic from 'next/dynamic'
 import '@tldraw/tldraw/tldraw.css'
-import { TldrawLogo } from './components/TldrawLogo'
 import { RiskyButCoolAPIKeyInput } from './components/RiskyButCoolAPIKeyInput'
 import { MakeRealButton } from './components/MakeRealButton'
 import { PreviewShapeUtil } from './PreviewShape/PreviewShape'
@@ -53,9 +52,10 @@ export default function App() {
 					},
 				}}
 			>
-				<TldrawLogo />
-				<RiskyButCoolAPIKeyInput />
-				<MakeRealButton />
+				<div className="api-key-and-button-container">
+					<RiskyButCoolAPIKeyInput />
+					<MakeRealButton />
+				</div>
 			</Tldraw>
 		</div>
 	)
