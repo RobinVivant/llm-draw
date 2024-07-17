@@ -95,7 +95,7 @@ export class PreviewShapeUtil extends BaseBoxShapeUtil<PreviewShape> {
 							alignItems: 'center',
 							justifyContent: 'center',
 							border: '1px solid var(--color-muted-1)',
-						}}
+						} as React.CSSProperties}
 					>
 						<DefaultSpinner />
 					</div>
@@ -149,7 +149,7 @@ export class PreviewShapeUtil extends BaseBoxShapeUtil<PreviewShape> {
 								padding: '4px 12px',
 								borderRadius: 99,
 								border: '1px solid var(--color-muted-1)',
-							}}
+							} as React.CSSProperties}
 						>
 							{isEditing ? 'Click the canvas to exit' : 'Double click to interact'}
 						</span>

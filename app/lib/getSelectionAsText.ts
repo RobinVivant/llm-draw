@@ -6,8 +6,7 @@ export function getSelectionAsText(editor: Editor) {
 
 	const texts = Array.from(selectedShapeDescendantIds)
 		.map((id) => {
-			const shape = editor.getShape(id)!
-			return shape
+			return editor.getShape(id)!
 		})
 		.filter((shape) => {
 			return (
@@ -27,8 +26,8 @@ export function getSelectionAsText(editor: Editor) {
 					? -1
 					: 1
 				: pageBoundsA.y < pageBoundsB.y
-				? -1
-				: 1
+					? -1
+					: 1
 		})
 		.map((shape) => {
 			if (!shape) return null

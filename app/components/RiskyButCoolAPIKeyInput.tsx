@@ -11,7 +11,7 @@ export function RiskyButCoolAPIKeyInput() {
 
 	const handleQuestionMessage = useCallback(() => {
 		window.alert(
-			`If you have an OpenRouter.ai API key, you can put it in this input and it will be used when making requests.\n\nSee https://openrouter.ai/keys to get a key.\n\nPutting API keys into boxes is generally a bad idea! If you have any concerns, create an API key and then revoke it after using this site.`
+			`If you have an OpenRouter.ai API key, you can put it in this input and it will be used when making requests.\n\nSee https://openrouter.ai/keys to get a key.\n\nPutting API keys into boxes is generally a bad idea! If you have any concerns, create an API key and then revoke it after using this site.`,
 		)
 	}, [])
 
@@ -27,7 +27,7 @@ export function RiskyButCoolAPIKeyInput() {
 						onChange={handleChange}
 						spellCheck={false}
 						autoCapitalize="off"
-						placeholder="Your OpenRouter API Key (risky but cool)"
+						placeholder="Your OpenRouter API Key"
 					/>
 				</div>
 				<button className="question__button" onClick={handleQuestionMessage}>
