@@ -8,5 +8,10 @@ try {
 }
 
 addEventListener('fetch', event => {
-  event.respondWith(handleRequest(event));
+  event.respondWith(
+    handleRequest(event).catch(error => {
+      console.error('Error in handleRequest:', error);
+      return new Response('Internal Server Error', { status: 500 });
+    })
+  );
 });
