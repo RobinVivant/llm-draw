@@ -87,7 +87,7 @@ export async function getHtmlFromOpenRouter({
 	}
 
 	// Add the additional prompt if provided
-	if (prompt && prompt.trim() !== '') {
+	if (prompt && typeof prompt === 'string' && prompt.trim() !== '') {
 		userContent.push({
 			type: 'text',
 			text: `Additional instructions: ${prompt}`,
