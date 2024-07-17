@@ -27,6 +27,7 @@ export function RiskyButCoolAPIKeyInput() {
 						onChange={handleChange}
 						spellCheck={false}
 						autoCapitalize="off"
+						placeholder="Your OpenRouter API Key (risky but cool)"
 					/>
 				</div>
 				<button className="question__button" onClick={handleQuestionMessage}>

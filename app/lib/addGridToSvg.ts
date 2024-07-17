@@ -1,12 +1,13 @@
 export function addGridToSvg(
 	editor: Editor,
-	svg: SVGSVGElement,
+	svgData: { svg: SVGSVGElement; width: number; height: number },
 	opts = {} as {
 		color?: string
 		size?: number
 		labels?: boolean
 	}
 ) {
+	const svg = svgData.svg;
 	const { color = '#00F', size = 100, labels = true } = opts
 
 	const [x, y, w, h] = svg

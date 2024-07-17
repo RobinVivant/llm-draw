@@ -1,18 +1,18 @@
 import { PreviewShape } from '../PreviewShape/PreviewShape'
 import {
+	OPEN_ROUTER_SYSTEM_PROMPT,
 	OPENROUTER_USER_PROMPT,
 	OPENROUTER_USER_PROMPT_WITH_PREVIOUS_DESIGN,
-	OPEN_ROUTER_SYSTEM_PROMPT,
 } from '../prompt'
 
 export async function getHtmlFromOpenRouter({
-	image,
-	apiKey,
-	text,
-	grid,
-	theme = 'light',
-	previousPreviews = [],
-}: {
+																							image,
+																							apiKey,
+																							text,
+																							grid,
+																							theme = 'light',
+																							previousPreviews = [],
+																						}: {
 	image: string
 	apiKey: string
 	text: string
@@ -26,7 +26,7 @@ export async function getHtmlFromOpenRouter({
 }) {
 	if (!apiKey) throw Error('You need to provide an OpenRouter API key (sorry)')
 
-	const messages: GPT4VCompletionRequest['messages'] = [
+	const messages: Sonnet35CompletionRequest['messages'] = [
 		{
 			role: 'system',
 			content: OPEN_ROUTER_SYSTEM_PROMPT,
@@ -81,7 +81,7 @@ export async function getHtmlFromOpenRouter({
 			{
 				type: 'text',
 				text: `And here's the HTML you came up with for it: ${preview.props.html}`,
-			}
+			},
 		)
 	}
 
@@ -92,7 +92,7 @@ export async function getHtmlFromOpenRouter({
 	})
 
 	const body: Sonnet35CompletionRequest = {
-		model: 'openrouter/anthropic/claude-3.5-sonnet:beta',
+		model: 'anthropic/claude-3.5-sonnet:beta',
 		messages,
 	}
 
@@ -120,21 +120,21 @@ export async function getHtmlFromOpenRouter({
 type MessageContent =
 	| string
 	| (
-			| string
-			| {
-					type: 'image_url'
-					image_url:
-						| string
-						| {
-								url: string
-								detail: 'low' | 'high' | 'auto'
-						  }
-			  }
-			| {
-					type: 'text'
-					text: string
-			  }
-	  )[]
+	| string
+	| {
+	type: 'image_url'
+	image_url:
+		| string
+		| {
+		url: string
+		detail: 'low' | 'high' | 'auto'
+	}
+}
+	| {
+	type: 'text'
+	text: string
+}
+	)[]
 
 export type Sonnet35CompletionRequest = {
 	model: string
@@ -152,8 +152,8 @@ export type Sonnet35CompletionRequest = {
 	seed?: number | undefined
 	logit_bias?:
 		| {
-				[x: string]: number
-		  }
+		[x: string]: number
+	}
 		| undefined
 	stop?: (string[] | string) | undefined
 }

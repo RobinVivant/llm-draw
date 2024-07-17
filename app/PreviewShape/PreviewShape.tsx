@@ -160,10 +160,13 @@ export class PreviewShapeUtil extends BaseBoxShapeUtil<PreviewShape> {
 		)
 	}
 
-	override toSvg(shape: PreviewShape, _ctx: SvgExportContext): SVGElement | Promise<SVGElement> {
+	override toSvg(
+		shape: PreviewShape,
+		_ctx: SvgExportContext
+	): SVGElement | Promise<SVGElement> | null {
 		const g = document.createElementNS('http://www.w3.org/2000/svg', 'g')
 		// while screenshot is the same as the old one, keep waiting for a new one
-		return new Promise((resolve, _) => {
+		return new Promise((resolve) => {
 			if (window === undefined) return resolve(g)
 			const windowListener = (event: MessageEvent) => {
 				if (event.data.screenshot && event.data?.shapeid === shape.id) {
