@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic'
 import '@tldraw/tldraw/tldraw.css'
 import { TldrawLogo } from './components/TldrawLogo'
 import { RiskyButCoolAPIKeyInput } from './components/RiskyButCoolAPIKeyInput'
+import { MakeRealButton } from './components/MakeRealButton'
 import { PreviewShapeUtil } from './PreviewShape/PreviewShape'
 
 const Tldraw = dynamic(async () => (await import('@tldraw/tldraw')).Tldraw, {
