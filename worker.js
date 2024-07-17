@@ -14,6 +14,9 @@ try {
 async function handleRequest(event) {
   try {
     console.log('Handling request...');
+    if (typeof nextHandleRequest !== 'function') {
+      throw new Error('nextHandleRequest is not a function');
+    }
     const response = await nextHandleRequest(event);
     console.log('Response from nextHandleRequest:', JSON.stringify({
       status: response.status,
@@ -28,20 +31,22 @@ async function handleRequest(event) {
     if (response.status === 500) {
       const errorText = await response.clone().text();
       console.error('Server error response:', errorText);
-      return new Response(errorText, { status: 500 });
+      return new Response(`Server Error: ${errorText}`, { status: 500 });
     }
 
     console.log('Returning response with status:', response.status);
     return response;
   } catch (error) {
     console.error('Error in handleRequest:', error);
-    return new Response(`Server Error: ${error.stack || error.message}`, { status: 500 });
+    console.error('Error stack:', error.stack);
+    return new Response(`Server Error: ${error.message}\n\nStack: ${error.stack}`, { status: 500 });
   }
 }
 
 addEventListener('fetch', event => {
   event.respondWith(handleRequest(event).catch(error => {
     console.error('Unhandled error in fetch event:', error);
-    return new Response(`Unhandled Server Error: ${error.stack || error.message}`, { status: 500 });
+    console.error('Unhandled error stack:', error.stack);
+    return new Response(`Unhandled Server Error: ${error.message}\n\nStack: ${error.stack}`, { status: 500 });
   }));
 });
