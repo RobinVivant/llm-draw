@@ -5,7 +5,7 @@ import {
 	OPEN_AI_SYSTEM_PROMPT,
 } from '../prompt'
 
-export async function getHtmlFromOpenAI({
+export async function getHtmlFromOpenRouter({
 	image,
 	apiKey,
 	text,
@@ -24,7 +24,7 @@ export async function getHtmlFromOpenAI({
 	}
 	previousPreviews?: PreviewShape[]
 }) {
-	if (!apiKey) throw Error('You need to provide an API key (sorry)')
+	if (!apiKey) throw Error('You need to provide an OpenRouter API key (sorry)')
 
 	const messages: GPT4VCompletionRequest['messages'] = [
 		{
@@ -92,7 +92,7 @@ export async function getHtmlFromOpenAI({
 	})
 
 	const body: GPT4VCompletionRequest = {
-		model: 'gpt-4-vision-preview',
+		model: 'openai/gpt-4-vision-preview',
 		max_tokens: 4096,
 		temperature: 0,
 		messages,
@@ -103,17 +103,19 @@ export async function getHtmlFromOpenAI({
 	let json = null
 
 	try {
-		const resp = await fetch('https://api.openai.com/v1/chat/completions', {
+		const resp = await fetch('https://openrouter.ai/api/v1/chat/completions', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				Authorization: `Bearer ${apiKey}`,
+				'Authorization': `Bearer ${apiKey}`,
+				'HTTP-Referer': 'https://your-site-url.com', // Replace with your actual site URL
+				'X-Title': 'Make Real Starter', // Replace with your app's name
 			},
 			body: JSON.stringify(body),
 		})
 		json = await resp.json()
 	} catch (e: any) {
-		throw Error(`Could not contact OpenAI: ${e.message}`)
+		throw Error(`Could not contact OpenRouter: ${e.message}`)
 	}
 
 	return json

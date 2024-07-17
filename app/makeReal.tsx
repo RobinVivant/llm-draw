@@ -1,6 +1,6 @@
 import { Editor, createShapeId, getSvgAsImage, track } from '@tldraw/tldraw'
 import { getSelectionAsText } from './lib/getSelectionAsText'
-import { getHtmlFromOpenAI } from './lib/getHtmlFromOpenAI'
+import { getHtmlFromOpenRouter } from './lib/getHtmlFromOpenAI'
 import { blobToBase64 } from './lib/blobToBase64'
 import { addGridToSvg } from './lib/addGridToSvg'
 import { PreviewShape } from './PreviewShape/PreviewShape'
@@ -55,7 +55,7 @@ export async function makeReal(editor: Editor, apiKey: string) {
 
 	// Send everything to OpenAI and get some HTML back
 	try {
-		const json = await getHtmlFromOpenAI({
+		const json = await getHtmlFromOpenRouter({
 			image: dataUrl,
 			apiKey,
 			text: getSelectionAsText(editor),
@@ -65,7 +65,7 @@ export async function makeReal(editor: Editor, apiKey: string) {
 		})
 
 		if (!json) {
-			throw Error('Could not contact OpenAI.')
+			throw Error('Could not contact OpenRouter.')
 		}
 
 		if (json?.error) {
