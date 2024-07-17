@@ -20,7 +20,6 @@ async function handleRequest(event) {
     console.log('Calling nextHandleRequest...');
     const response = await nextHandleRequest(event);
     console.log('Response from nextHandleRequest:', JSON.stringify({
-      body: await response.text(),
       status: response.status,
       headers: Object.fromEntries(response.headers),
     }, null, 2));
@@ -31,7 +30,8 @@ async function handleRequest(event) {
     }
 
     if (response.status === 500) {
-      const errorText = await response.clone().text();
+      const clonedResponse = response.clone();
+      const errorText = await clonedResponse.text();
       console.error('Server error response:', errorText);
       return new Response(`Server Error: ${errorText}`, { status: 500 });
     }
