@@ -22,6 +22,11 @@ export async function makeReal(editor: Editor, apiKey: string, prompt: string) {
 		props: { html: '' },
 	})
 
+	// Remove deleted shapes from persistent storage
+	const allShapes = editor.getShapes()
+	const persistedShapes = allShapes.filter(shape => !shape.isDeleted)
+	editor.store.put(persistedShapes)
+
 	// Get an SVG based on the selected shapes
 	const mappedShapes = selectedShapes.map((shape) => shape.id)
 	const svgElement = await editor.getSvgElement(

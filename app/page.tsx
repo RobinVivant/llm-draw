@@ -45,6 +45,12 @@ export default function App() {
 						}
 					},
 				}}
+				onMount={(editor) => {
+					const storedState = localStorage.getItem('make-real-state')
+					if (storedState) {
+						editor.loadSnapshot(JSON.parse(storedState))
+					}
+				}}
 			>
 				<div className="api-key-and-button-container">
 					<RiskyButCoolAPIKeyInput />
