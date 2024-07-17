@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export function PromptInput() {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const handleExpand = () => {
+    setIsExpanded(!isExpanded);
+  };
+
   return (
-    <textarea
-      id="prompt-input"
-      placeholder="Enter additional prompt here..."
-      className="prompt-input"
-    />
+    <div className="prompt-container">
+      <textarea
+        id="prompt-input"
+        placeholder="Enter additional prompt here..."
+        className={`prompt-input ${isExpanded ? 'expanded' : ''}`}
+      />
+    </div>
   );
 }

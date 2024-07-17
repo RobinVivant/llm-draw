@@ -23,6 +23,7 @@ export async function getHtmlFromOpenRouter({
 		labels: boolean
 	}
 	previousPreviews?: PreviewShape[]
+	prompt?: string
 }) {
 	if (!apiKey) throw Error('You need to provide an OpenRouter API key (sorry)')
 
@@ -83,6 +84,14 @@ export async function getHtmlFromOpenRouter({
 				text: `And here's the HTML you came up with for it: ${preview.props.html}`,
 			},
 		)
+	}
+
+	// Add the additional prompt if provided
+	if (prompt) {
+		userContent.push({
+			type: 'text',
+			text: `Additional instructions: ${prompt}`,
+		})
 	}
 
 	// Prompt the theme
