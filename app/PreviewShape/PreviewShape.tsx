@@ -181,7 +181,7 @@ export class PreviewShapeUtil extends BaseBoxShapeUtil<PreviewShape> {
 					resolve(React.createElement('g', { dangerouslySetInnerHTML: { __html: g.innerHTML } }))
 				}
 			}
-			const timeOut: number = setTimeout(() => {
+			const timeOut: NodeJS.Timeout = setTimeout(() => {
 				window.removeEventListener('message', windowListener)
 				resolve(React.createElement('g'))
 			}, 2000)
