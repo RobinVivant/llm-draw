@@ -1,45 +1,120 @@
-# Make Real
+# Make Real Starter
 
-Use this repo as a template to create Make Real style apps like
-[makereal.tldraw.com](https://makereal.tldraw.com). To get started:
+This project is a powerful tool that allows you to transform hand-drawn wireframes into functional HTML prototypes using AI. It's built with Next.js, tldraw, and integrates with OpenRouter's AI models.
 
-1. Use the template and clone your new repo to your computer
-2. Run `npm install` to install dependencies
-3. Get an OpenAI API key from [platform.openai.com/api-keys](https://platform.openai.com/api-keys). Make sure
-   you are at least a
-   [Tier 1](https://platform.openai.com/docs/guides/rate-limits/usage-tiers) API
-   user, which means you have access to GPT-4 Vision. You can check your tier on
-   the [OpenAI API Limits](https://platform.openai.com/account/limits).
-4. Create a `.env.local` file that contains `OPENAI_API_KEY=your api key here`
-5. Run `npm run dev`
-6. Open [localhost:3000](http://localhost:3000) and make some stuff real!
+## Features
 
-## How it works
+- Draw wireframes on an infinite canvas
+- Convert drawings to interactive HTML prototypes with a single click
+- Real-time preview of generated prototypes
+- Ability to iterate and refine designs
+- Support for custom prompts to guide the AI
+- Responsive design support
 
-Make Real is built with [tldraw](https://tldraw.dev), a very good React library for
-creating whiteboards and other infinite canvas experiences.
+## Use Cases
 
-To use it, first draw a mockup for a piece of UI. When
-you're ready, select the drawing, and press the Make Real button.
-We'll capture an image of your selection, and send it to
-[OpenAI's GPT-4V](https://platform.openai.com/docs/guides/vision) along with
-instructions to turn it into a HTML file.
+1. Rapid prototyping for web designers and developers
+2. Brainstorming sessions for product teams
+3. Teaching UI/UX design concepts
+4. Quick visualization of ideas for client presentations
+5. Exploring design variations efficiently
 
-We take the HTML response and add it to a tldraw
-[custom shape](https://tldraw.dev/docs/shapes#Custom-shapes). The custom shape
-shows the response in an iframe so that you can interact with it on the canvas. If you
-want to iterate on the response, annotate the iframe, select it all, and press 'Make Real' again.
+## Getting Started
 
-## To make changes
+### Prerequisites
 
-To change how Make Real works, start from the [`makeReal()`](./app/makeReal.tsx)
-function. From there, you can change the prompt that gets sent to gpt-4.
+- Node.js (v14 or later)
+- npm or yarn
+- An OpenRouter API key
 
-If you'd like Make Real to create something other than HTML, you'll need to
-either update the [`PreviewShape`](./app/PreviewShape/PreviewShape.tsx) to
-display something different, or use one of tldraw's built-in shapes like image
-or text.
+### Installation
 
-## The dangerous API key input method
+1. Clone the repository:
+   ```
+   git clone https://github.com/yourusername/make-real-starter.git
+   cd make-real-starter
+   ```
 
-For prototyping or at least until the vision APIs are able to support higher usage limits, we've also included the `RiskyButCoolAPIKeyInput`, similar to the one found on [makereal.tldraw.com](https://makereal.tldraw.com). Please use this as carefully and ethically as you can, as users should be reluctant to add API keys to public sites.
+2. Install dependencies:
+   ```
+   npm install
+   ```
+
+3. Create a `.env.local` file in the root directory and add your OpenRouter API key:
+   ```
+   OPENROUTER_API_KEY=your_api_key_here
+   ```
+
+### Development
+
+Run the development server:
+
+```
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
+
+### Building for Production
+
+To create a production build:
+
+```
+npm run build
+```
+
+### Deployment
+
+This project is set up to deploy on Cloudflare Pages. Follow these steps:
+
+1. Push your code to a GitHub repository.
+
+2. Log in to your Cloudflare account and go to the Pages section.
+
+3. Create a new project and connect it to your GitHub repository.
+
+4. In the build settings:
+   - Set the build command to: `npm run pages:build`
+   - Set the build output directory to: `.vercel/output/static`
+
+5. Add your environment variables (OPENROUTER_API_KEY) in the Cloudflare Pages settings.
+
+6. Deploy your site.
+
+For subsequent deployments, you can use:
+
+```
+npm run deploy
+```
+
+This will build your project and deploy it to Cloudflare Pages.
+
+## How It Works
+
+1. Users draw wireframes on the tldraw canvas.
+2. When the "Make Real" button is clicked, the selected drawings are converted to an image.
+3. This image, along with any text content and custom prompts, is sent to the OpenRouter AI model.
+4. The AI generates HTML based on the input.
+5. The generated HTML is displayed in an interactive iframe on the canvas.
+6. Users can iterate on the design by annotating the result and generating again.
+
+## Customization
+
+- Modify the `app/prompt.ts` file to change the instructions sent to the AI.
+- Update the `PreviewShape` component in `app/PreviewShape/PreviewShape.tsx` to change how the generated content is displayed.
+- Adjust the styling in `app/globals.css` to match your preferred design.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## Acknowledgements
+
+- [tldraw](https://www.tldraw.com/) for the amazing drawing library
+- [OpenRouter](https://openrouter.ai/) for providing access to powerful AI models
+- [Next.js](https://nextjs.org/) for the React framework
+- [Cloudflare Pages](https://pages.cloudflare.com/) for hosting and deployment
