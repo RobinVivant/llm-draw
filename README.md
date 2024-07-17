@@ -1,120 +1,81 @@
-# Make Real Starter
+# Make Real: AI-Powered Wireframe to HTML Converter
 
-This project is a powerful tool that allows you to transform hand-drawn wireframes into functional HTML prototypes using AI. It's built with Next.js, tldraw, and integrates with OpenRouter's AI models.
+Make Real is an innovative tool that transforms hand-drawn wireframes into functional HTML prototypes using AI technology. This project is based on [tldraw](https://www.tldraw.com/) and integrates with OpenRouter's AI models to provide a seamless design-to-code experience.
 
-## Features
+## Purpose
 
-- Draw wireframes on an infinite canvas
-- Convert drawings to interactive HTML prototypes with a single click
+The main purpose of Make Real is to bridge the gap between conceptual design and functional prototypes. It aims to accelerate the web development process by allowing designers and developers to quickly visualize and iterate on their ideas.
+
+## Key Features
+
+- Infinite canvas for drawing wireframes
+- AI-powered conversion of drawings to interactive HTML prototypes
 - Real-time preview of generated prototypes
-- Ability to iterate and refine designs
-- Support for custom prompts to guide the AI
-- Responsive design support
+- Custom prompt support for fine-tuning AI output
+- Responsive design generation
+- Annotation and iteration capabilities
+- Integration with OpenRouter AI models
+- Built with Next.js for optimal performance
 
-## Use Cases
+## How to Use
 
-1. Rapid prototyping for web designers and developers
-2. Brainstorming sessions for product teams
-3. Teaching UI/UX design concepts
-4. Quick visualization of ideas for client presentations
-5. Exploring design variations efficiently
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js (v14 or later)
-- npm or yarn
-- An OpenRouter API key
-
-### Installation
-
-1. Clone the repository:
+1. Clone the repository and install dependencies:
    ```
-   git clone https://github.com/yourusername/make-real-starter.git
-   cd make-real-starter
-   ```
-
-2. Install dependencies:
-   ```
+   git clone https://github.com/yourusername/make-real.git
+   cd make-real
    npm install
    ```
 
-3. Create a `.env.local` file in the root directory and add your OpenRouter API key:
+2. Set up your OpenRouter API key in a `.env.local` file:
    ```
    OPENROUTER_API_KEY=your_api_key_here
    ```
 
-### Development
+3. Run the development server:
+   ```
+   npm run dev
+   ```
 
-Run the development server:
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-```
-npm run dev
-```
+5. Draw your wireframe on the canvas.
 
-Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
+6. Click the "Make Real" button to generate the HTML prototype.
 
-### Building for Production
+7. Iterate on the design by annotating the result and regenerating as needed.
 
-To create a production build:
+## Use Cases
 
-```
-npm run build
-```
+1. Rapid Prototyping: Quickly convert design ideas into functional prototypes.
+2. Design Exploration: Easily experiment with different layout and design concepts.
+3. Client Presentations: Generate interactive demos for client pitches and feedback sessions.
+4. Design Education: Teach UI/UX concepts by demonstrating the design-to-code process.
+5. Collaborative Design: Use in team brainstorming sessions to visualize ideas in real-time.
+6. Design System Development: Rapidly prototype and test components for design systems.
+7. Accessibility Testing: Generate HTML to evaluate and improve design accessibility.
+8. Responsive Design Testing: Create and test responsive layouts quickly.
 
-### Deployment
+## Proposed Improvements
 
-This project is set up to deploy on Cloudflare Pages. Follow these steps:
+1. Multi-page support for creating more complex prototypes
+2. Integration with popular design tools (e.g., Figma, Sketch)
+3. Version control and design history tracking
+4. AI-powered design suggestions and improvements
+5. Export options for different frameworks (React, Vue, etc.)
+6. Collaborative real-time editing features
+7. Advanced customization options for AI-generated code
+8. Integration with design systems and component libraries
+9. Performance optimization for large and complex designs
+10. Enhanced accessibility features in generated prototypes
 
-1. Push your code to a GitHub repository.
+## Acknowledgements
 
-2. Log in to your Cloudflare account and go to the Pages section.
-
-3. Create a new project and connect it to your GitHub repository.
-
-4. In the build settings:
-   - Set the build command to: `npm run pages:build`
-   - Set the build output directory to: `.vercel/output/static`
-
-5. Add your environment variables (OPENROUTER_API_KEY) in the Cloudflare Pages settings.
-
-6. Deploy your site.
-
-For subsequent deployments, you can use:
-
-```
-npm run deploy
-```
-
-This will build your project and deploy it to Cloudflare Pages.
-
-## How It Works
-
-1. Users draw wireframes on the tldraw canvas.
-2. When the "Make Real" button is clicked, the selected drawings are converted to an image.
-3. This image, along with any text content and custom prompts, is sent to the OpenRouter AI model.
-4. The AI generates HTML based on the input.
-5. The generated HTML is displayed in an interactive iframe on the canvas.
-6. Users can iterate on the design by annotating the result and generating again.
-
-## Customization
-
-- Modify the `app/prompt.ts` file to change the instructions sent to the AI.
-- Update the `PreviewShape` component in `app/PreviewShape/PreviewShape.tsx` to change how the generated content is displayed.
-- Adjust the styling in `app/globals.css` to match your preferred design.
+This project is based on the innovative work of [tldraw](https://www.tldraw.com/) and leverages their powerful drawing capabilities. We extend our gratitude to the tldraw team for their contributions to the open-source community.
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+We welcome contributions to Make Real! Whether it's bug fixes, feature additions, or documentation improvements, please feel free to submit a Pull Request.
 
 ## License
 
 This project is open source and available under the [MIT License](LICENSE).
-
-## Acknowledgements
-
-- [tldraw](https://www.tldraw.com/) for the amazing drawing library
-- [OpenRouter](https://openrouter.ai/) for providing access to powerful AI models
-- [Next.js](https://nextjs.org/) for the React framework
-- [Cloudflare Pages](https://pages.cloudflare.com/) for hosting and deployment
