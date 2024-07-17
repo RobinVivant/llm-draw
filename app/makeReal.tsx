@@ -49,7 +49,7 @@ export async function makeReal(editor: Editor, apiKey: string) {
 
 	// Turn the SVG into a DataUrl
 	const IS_SAFARI = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
-	const blob = await getSvgAsImage(editor, svgElementString.svg, {
+	const blob = await getSvgAsImage(editor, svgElementString?.svg ?? '', {
 		type: 'png',
 		quality: 0.8,
 		scale: 1,
