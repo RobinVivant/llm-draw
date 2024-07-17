@@ -1,3 +1,5 @@
+import { Editor } from '@tldraw/tldraw'
+
 export function addGridToSvg(
 	editor: Editor,
 	svgData: { svg: SVGSVGElement; width: number; height: number },
