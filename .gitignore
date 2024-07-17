@@ -37,3 +37,4 @@ next-env.d.ts
 .aider*
 package-lock.json
 .idea
+/.wrangler
