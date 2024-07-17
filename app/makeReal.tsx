@@ -5,7 +5,7 @@ import { blobToBase64 } from './lib/blobToBase64'
 import { addGridToSvg } from './lib/addGridToSvg'
 import { PreviewShape } from './PreviewShape/PreviewShape'
 
-export async function makeReal(editor: Editor, apiKey: string) {
+export async function makeReal(editor: Editor) {
 	// Get the selected shapes (we need at least one)
 	const selectedShapes = editor.getSelectedShapes()
 
@@ -60,7 +60,6 @@ export async function makeReal(editor: Editor, apiKey: string) {
 	try {
 		const json = await getHtmlFromOpenRouter({
 			image: dataUrl,
-			apiKey,
 			text: getSelectionAsText(editor),
 			previousPreviews,
 			grid,
