@@ -3,15 +3,14 @@ import {
 	BaseBoxShapeUtil,
 	DefaultSpinner,
 	HTMLContainer,
+	stopEventPropagation,
 	SvgExportContext,
 	TLBaseShape,
-	Vec,
-	stopEventPropagation,
 	toDomPrecision,
 	useIsEditing,
 	useToasts,
 	useValue,
-	Icon,
+	Vec,
 } from '@tldraw/tldraw'
 
 export type PreviewShape = TLBaseShape<
@@ -50,7 +49,7 @@ export class PreviewShapeUtil extends BaseBoxShapeUtil<PreviewShape> {
 				const rotation = this.editor.getShapePageTransform(shape)!.rotation()
 				return getRotatedBoxShadow(rotation)
 			},
-			[this.editor]
+			[this.editor],
 		)
 
 		// Kind of a hack—we're preventing users from pinching-zooming into the iframe
@@ -59,15 +58,15 @@ export class PreviewShapeUtil extends BaseBoxShapeUtil<PreviewShape> {
 			`<script src="https://unpkg.com/html2canvas"></script><script>
 			// send the screenshot to the parent window
   			window.addEventListener('message', function(event) {
-    		if (event.data.action === 'take-screenshot' && event.data.shapeid === "${shape.id}") {
+    		if (event.data.action === 'take-screenshot' && event.data.shapeid === '${shape.id}') {
       		html2canvas(document.body, {useCors : true}).then(function(canvas) {
-        		const data = canvas.toDataURL('image/png');
-        		window.parent.postMessage({screenshot: data, shapeid: "${shape.id}"}, "*");
-      		});
+        		const data = canvas.toDataURL('image/png')
+        		window.parent.postMessage({screenshot: data, shapeid: '${shape.id}'}, '*')
+      		})
     		}
-  			}, false);
-			document.body.addEventListener('wheel', e => { if (!e.ctrlKey) return; e.preventDefault(); return }, { passive: false })</script>
-</body>`
+  			}, false)
+			document.body.addEventListener('wheel', e => { if (!e.ctrlKey) return e.preventDefault()  }, { passive: false })</script>
+</body>`,
 		)
 
 		return (
@@ -162,7 +161,7 @@ export class PreviewShapeUtil extends BaseBoxShapeUtil<PreviewShape> {
 
 	override toSvg(
 		shape: PreviewShape,
-		_ctx: SvgExportContext
+		_ctx: SvgExportContext,
 	): SVGElement | Promise<SVGElement> | null {
 		const g = document.createElementNS('http://www.w3.org/2000/svg', 'g')
 		// while screenshot is the same as the old one, keep waiting for a new one
@@ -190,7 +189,7 @@ export class PreviewShapeUtil extends BaseBoxShapeUtil<PreviewShape> {
 			if (firstLevelIframe) {
 				firstLevelIframe.contentWindow!.postMessage(
 					{ action: 'take-screenshot', shapeid: shape.id },
-					'*'
+					'*',
 				)
 			} else {
 				console.log('first level iframe not found or not accessible')
