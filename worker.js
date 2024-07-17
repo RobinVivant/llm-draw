@@ -17,6 +17,7 @@ async function handleRequest(event) {
     if (typeof nextHandleRequest !== 'function') {
       throw new Error('nextHandleRequest is not a function');
     }
+    console.log('Calling nextHandleRequest...');
     const response = await nextHandleRequest(event);
     console.log('Response from nextHandleRequest:', JSON.stringify({
       status: response.status,
@@ -39,7 +40,8 @@ async function handleRequest(event) {
   } catch (error) {
     console.error('Error in handleRequest:', error);
     console.error('Error stack:', error.stack);
-    return new Response(`Server Error: ${error.message}\n\nStack: ${error.stack}`, { status: 500 });
+    console.error('Error details:', JSON.stringify(error, Object.getOwnPropertyNames(error)));
+    return new Response(`Server Error: ${error.message}\n\nStack: ${error.stack}\n\nDetails: ${JSON.stringify(error, Object.getOwnPropertyNames(error))}`, { status: 500 });
   }
 }
 
