@@ -46,7 +46,8 @@ body {
 .api-key-and-button-container {
     position: absolute;
     bottom: 72px;
-    right: 20px;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     align-items: center;
     z-index: 9999999;
