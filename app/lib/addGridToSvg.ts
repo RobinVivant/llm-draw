@@ -7,9 +7,9 @@ export function addGridToSvg(
 		color?: string
 		size?: number
 		labels?: boolean
-	}
+	},
 ) {
-	const svg = svgData.svg;
+	const svg = svgData.svg
 	const { color = '#00F', size = 100, labels = true } = opts
 
 	const [x, y, w, h] = svg
