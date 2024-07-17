@@ -37,30 +37,13 @@ export async function makeReal(editor: Editor, apiKey: string) {
 
 	// Add the grid lines to the SVG
 	const grid = { color: 'red', size: 100, labels: true }
-	const svgWidth = svgElement.width
-	const svgHeight = svgElement.height
+	const svgWidth = svgElement.width.baseVal.value
+	const svgHeight = svgElement.height.baseVal.value
 
-	/*
-	TS2740: Type
-{   height: number;   svg: SVGSVGElement;   width: number; }
-is missing the following properties from type SVGSVGElement: currentScale, currentTranslate, x, y, and 317 more.
-addGridToSvg.ts(5, 13): The expected type comes from property svg which is declared here on type
-{   svg: SVGSVGElement;   width: number;   height: number; }
-	 */
 	addGridToSvg(editor, { svg: svgElement, width: svgWidth, height: svgHeight }, grid)
-
-	if (!svgElement) throw Error(`Could not get the SVG.`)
 
 	// Turn the SVG into a DataUrl
 	const IS_SAFARI = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
-	/*
-	TS2345: Argument of type
-{   height: number;   svg: SVGSVGElement;   width: number; }
-is not assignable to parameter of type Editor
-Type
-{   height: number;   svg: SVGSVGElement;   width: number; }
-is missing the following properties from type Editor: options, store, root, disposables, and 262 more.
-	 */
 	const blob = await getSvgAsImage(svgElement, IS_SAFARI, {
 		type: 'png',
 		quality: 0.8,
