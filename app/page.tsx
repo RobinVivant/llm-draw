@@ -7,6 +7,12 @@ import { MakeRealButton } from './components/MakeRealButton'
 import { PreviewShapeUtil } from './PreviewShape/PreviewShape'
 import { makeReal } from './makeReal'
 
+const handleMakeReal = (editor: Editor) => {
+  const apiKeyInput = document.getElementById('openrouter_key_risky_but_cool') as HTMLInputElement;
+  const apiKey = apiKeyInput?.value ?? '';
+  makeReal(editor, apiKey);
+};
+
 const Tldraw = dynamic(async () => (await import('@tldraw/tldraw')).Tldraw, {
 	ssr: false,
 })
@@ -28,9 +34,7 @@ export default function App() {
 								label: 'Make Real',
 								readonlyOk: true,
 								onSelect: () => {
-									const apiKeyInput = document.getElementById('openrouter_key_risky_but_cool') as HTMLInputElement;
-									const apiKey = apiKeyInput?.value ?? '';
-									makeReal(editor, apiKey);
+									handleMakeReal(editor);
 								},
 							},
 						}
@@ -43,9 +47,7 @@ export default function App() {
 								icon: 'tool',
 								label: 'Make Real',
 								onSelect: () => {
-									const apiKeyInput = document.getElementById('openrouter_key_risky_but_cool') as HTMLInputElement;
-									const apiKey = apiKeyInput?.value ?? '';
-									makeReal(editor, apiKey);
+									handleMakeReal(editor);
 								},
 								onDeselect: () => {
 									editor.setCurrentTool('select')
