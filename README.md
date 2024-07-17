@@ -26,10 +26,7 @@ The main purpose of Make Real is to bridge the gap between conceptual design and
    npm install
    ```
 
-2. Set up your OpenRouter API key in a `.env.local` file:
-   ```
-   OPENROUTER_API_KEY=your_api_key_here
-   ```
+2. The OpenRouter API key is entered directly in the web interface. Users will need to copy and paste their API key into the designated input field on the page.
 
 3. Run the development server:
    ```
