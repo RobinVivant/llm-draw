@@ -19,8 +19,10 @@ export default function App() {
 			<Tldraw
 				persistenceKey="make-real"
 				shapeUtils={shapeUtils}
-				components={{
-					TopPanel: MakeRealButton,
+				overrides={{
+					components: {
+						TopPanel: MakeRealButton,
+					},
 				}}
 			>
 				<TldrawLogo />
