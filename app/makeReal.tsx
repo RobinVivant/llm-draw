@@ -23,7 +23,7 @@ export async function makeReal(editor: Editor, apiKey: string) {
 	})
 
 	// Get an SVG based on the selected shapes
-	const svg = await editor.getSvgElement(
+	const svgElement = await editor.getSvgElement(
 		selectedShapes.map((shape) => shape.id),
 		{
 			scale: 1,
@@ -31,19 +31,26 @@ export async function makeReal(editor: Editor, apiKey: string) {
 		},
 	)
 
-	if (!svg) {
+	if (!svgElement) {
 		throw Error('Could not get the SVG element.')
 	}
 
 	// Add the grid lines to the SVG
 	const grid = { color: 'red', size: 100, labels: true }
-	addGridToSvg(editor, { svg, width: svg.width.baseVal.value, height: svg.height.baseVal.value }, grid)
+	const svgWidth = svgElement.getAttribute('width')
+	const svgHeight = svgElement.getAttribute('height')
+	
+	if (!svgWidth || !svgHeight) {
+		throw Error('SVG width or height is missing.')
+	}
 
-	if (!svg) throw Error(`Could not get the SVG.`)
+	addGridToSvg(editor, { svg: svgElement, width: parseFloat(svgWidth), height: parseFloat(svgHeight) }, grid)
+
+	if (!svgElement) throw Error(`Could not get the SVG.`)
 
 	// Turn the SVG into a DataUrl
 	const IS_SAFARI = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
-	const blob = await getSvgAsImage(svg, IS_SAFARI, {
+	const blob = await getSvgAsImage(svgElement, IS_SAFARI, {
 		type: 'png',
 		quality: 0.8,
 		scale: 1,
