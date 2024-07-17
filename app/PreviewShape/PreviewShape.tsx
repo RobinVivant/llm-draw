@@ -125,7 +125,7 @@ export class PreviewShapeUtil extends BaseBoxShapeUtil<PreviewShape> {
 					}}
 					onPointerDown={stopEventPropagation}
 				>
-					<Icon icon="duplicate" />
+					Copy
 				</div>
 				{htmlToUse && (
 					<div
