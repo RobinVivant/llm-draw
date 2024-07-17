@@ -92,7 +92,7 @@ export async function getHtmlFromOpenRouter({
 	})
 
 	const body: GPT4VCompletionRequest = {
-		model: 'openai/gpt-4-vision-preview',
+		model: 'openrouter/anthropic/claude-3.5-sonnet:beta',
 		max_tokens: 4096,
 		temperature: 0,
 		messages,
