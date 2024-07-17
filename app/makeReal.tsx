@@ -37,14 +37,10 @@ export async function makeReal(editor: Editor, apiKey: string) {
 
 	// Add the grid lines to the SVG
 	const grid = { color: 'red', size: 100, labels: true }
-	const svgWidth = svgElement.getAttribute('width')
-	const svgHeight = svgElement.getAttribute('height')
-	
-	if (!svgWidth || !svgHeight) {
-		throw Error('SVG width or height is missing.')
-	}
+	const svgWidth = svgElement.width.baseVal.value
+	const svgHeight = svgElement.height.baseVal.value
 
-	addGridToSvg(editor, { svg: svgElement, width: parseFloat(svgWidth), height: parseFloat(svgHeight) }, grid)
+	addGridToSvg(editor, { svg: svgElement, width: svgWidth, height: svgHeight }, grid)
 
 	if (!svgElement) throw Error(`Could not get the SVG.`)
 
