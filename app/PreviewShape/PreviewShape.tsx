@@ -39,7 +39,7 @@ export class PreviewShapeUtil extends BaseBoxShapeUtil<PreviewShape> {
 	override canResize = () => true
 	override canBind = () => false
 
-	override component(shape: PreviewShape) {
+	override component(shape: PreviewShape): JSX.Element {
 		const isEditing = useIsEditing(shape.id)
 		const toast = useToasts()
 
@@ -83,7 +83,7 @@ export class PreviewShapeUtil extends BaseBoxShapeUtil<PreviewShape> {
 							boxShadow,
 							border: '1px solid var(--color-panel-contrast)',
 							borderRadius: 'var(--radius-2)',
-						}}
+						} as React.CSSProperties}
 					/>
 				) : (
 					<div
@@ -112,7 +112,7 @@ export class PreviewShapeUtil extends BaseBoxShapeUtil<PreviewShape> {
 						justifyContent: 'center',
 						cursor: 'pointer',
 						pointerEvents: 'all',
-					}}
+					} as React.CSSProperties}
 					onClick={useCallback(() => {
 						if (navigator && navigator.clipboard) {
 							navigator.clipboard.writeText(shape.props.html)
@@ -141,7 +141,7 @@ export class PreviewShapeUtil extends BaseBoxShapeUtil<PreviewShape> {
 							alignItems: 'center',
 							justifyContent: 'center',
 							pointerEvents: 'none',
-						}}
+						} as React.CSSProperties}
 					>
 						<span
 							style={{
