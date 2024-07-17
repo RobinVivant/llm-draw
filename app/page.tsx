@@ -5,6 +5,7 @@ import '@tldraw/tldraw/tldraw.css'
 import { RiskyButCoolAPIKeyInput } from './components/RiskyButCoolAPIKeyInput'
 import { MakeRealButton } from './components/MakeRealButton'
 import { PreviewShapeUtil } from './PreviewShape/PreviewShape'
+import { makeReal } from './makeReal'
 
 const Tldraw = dynamic(async () => (await import('@tldraw/tldraw')).Tldraw, {
 	ssr: false,
@@ -27,7 +28,9 @@ export default function App() {
 								label: 'Make Real',
 								readonlyOk: true,
 								onSelect: () => {
-									editor.setCurrentTool('make-real')
+									const apiKeyInput = document.getElementById('openrouter_key_risky_but_cool') as HTMLInputElement;
+									const apiKey = apiKeyInput?.value ?? '';
+									makeReal(editor, apiKey);
 								},
 							},
 						}
@@ -40,9 +43,9 @@ export default function App() {
 								icon: 'tool',
 								label: 'Make Real',
 								onSelect: () => {
-									// Implement your Make Real functionality here
-									console.log('Make Real tool selected')
-									// You can call your makeReal function here
+									const apiKeyInput = document.getElementById('openrouter_key_risky_but_cool') as HTMLInputElement;
+									const apiKey = apiKeyInput?.value ?? '';
+									makeReal(editor, apiKey);
 								},
 								onDeselect: () => {
 									editor.setCurrentTool('select')
