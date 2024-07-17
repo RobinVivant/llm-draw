@@ -45,7 +45,7 @@ body {
 
 .makeRealButton {
     position: absolute;
-    bottom: 20px;
+    bottom: 60px;
     right: 20px;
     background: var(--color-primary);
     color: white;
