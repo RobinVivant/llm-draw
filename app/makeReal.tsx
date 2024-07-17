@@ -1,11 +1,11 @@
-import { Editor, createShapeId, getSvgAsImage, track } from '@tldraw/tldraw'
+import { createShapeId, Editor, getSvgAsImage } from '@tldraw/tldraw'
 import { getSelectionAsText } from './lib/getSelectionAsText'
 import { getHtmlFromOpenRouter } from './lib/getHtmlFromOpenRouter'
 import { blobToBase64 } from './lib/blobToBase64'
 import { addGridToSvg } from './lib/addGridToSvg'
 import { PreviewShape } from './PreviewShape/PreviewShape'
 
-export async function makeReal(editor: Editor) {
+export async function makeReal(editor: Editor, apiKey: string) {
 	// Get the selected shapes (we need at least one)
 	const selectedShapes = editor.getSelectedShapes()
 
@@ -28,7 +28,7 @@ export async function makeReal(editor: Editor) {
 		{
 			scale: 1,
 			background: true,
-		}
+		},
 	)
 
 	if (!svg) {
@@ -60,6 +60,7 @@ export async function makeReal(editor: Editor) {
 	try {
 		const json = await getHtmlFromOpenRouter({
 			image: dataUrl,
+			apiKey,
 			text: getSelectionAsText(editor),
 			previousPreviews,
 			grid,
