@@ -113,7 +113,7 @@ export class PreviewShapeUtil extends BaseBoxShapeUtil<PreviewShape> {
 						cursor: 'pointer',
 						pointerEvents: 'all',
 					}}
-					onClick={() => {
+					onClick={useCallback(() => {
 						if (navigator && navigator.clipboard) {
 							navigator.clipboard.writeText(shape.props.html)
 							toast.addToast({
@@ -121,7 +121,7 @@ export class PreviewShapeUtil extends BaseBoxShapeUtil<PreviewShape> {
 								title: 'Copied to clipboard',
 							})
 						}
-					}}
+					}, [shape.props.html, toast])}
 					onPointerDown={stopEventPropagation}
 				>
 					Copy
@@ -197,7 +197,7 @@ export class PreviewShapeUtil extends BaseBoxShapeUtil<PreviewShape> {
 		})
 	}
 
-	indicator(shape: PreviewShape) {
+	indicator(shape: PreviewShape): JSX.Element {
 		return <rect width={shape.props.w} height={shape.props.h} />
 	}
 }
