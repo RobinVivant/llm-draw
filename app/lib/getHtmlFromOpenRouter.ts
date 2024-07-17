@@ -140,16 +140,12 @@ type MessageContent =
 			  }
 	  )[]
 
-export type GPT4VCompletionRequest = {
-	model: 'gpt-4-vision-preview'
+export type Sonnet35CompletionRequest = {
+	model: string
 	messages: {
-		role: 'system' | 'user' | 'assistant' | 'function'
+		role: 'system' | 'user' | 'assistant'
 		content: MessageContent
-		name?: string | undefined
 	}[]
-	functions?: any[] | undefined
-	function_call?: any | undefined
-	stream?: boolean | undefined
 	temperature?: number | undefined
 	top_p?: number | undefined
 	max_tokens?: number | undefined
