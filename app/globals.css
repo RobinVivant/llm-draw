@@ -44,6 +44,9 @@ body {
 }
 
 .makeRealButton {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
     background: var(--color-primary);
     color: white;
     border: none;
@@ -51,9 +54,9 @@ body {
     font-weight: 600;
     padding: var(--space-3) var(--space-4);
     border-radius: var(--radius-2);
-    margin: var(--space-3);
     cursor: pointer;
     pointer-events: all;
+    z-index: 1000;
 }
 
 .makeRealButton:hover {
