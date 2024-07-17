@@ -56,6 +56,7 @@ body {
     width: calc(100% - 20px);
     max-width: 800px;
     gap: 10px;
+    box-sizing: border-box;
 }
 
 @media (min-width: 768px) {
@@ -92,6 +93,7 @@ body {
 .prompt-container {
     position: relative;
     flex-grow: 1;
+    width: 100%;
 }
 
 .prompt-input {
@@ -107,6 +109,7 @@ body {
     resize: none;
     overflow: hidden;
     transition: height 0.3s ease;
+    box-sizing: border-box;
 }
 
 .prompt-input:focus {
