@@ -12,13 +12,14 @@ async function handleRequest(event) {
   try {
     console.log('Handling request...');
     const response = await nextHandleRequest(event);
-    console.log('Response from nextHandleRequest:', response);
+    console.log('Response from nextHandleRequest:', JSON.stringify(response, null, 2));
 
     if (!(response instanceof Response)) {
-      console.error('Invalid response from nextHandleRequest:', response);
+      console.error('Invalid response from nextHandleRequest:', JSON.stringify(response, null, 2));
       return new Response('Invalid response from server', { status: 500 });
     }
 
+    console.log('Returning response with status:', response.status);
     return response;
   } catch (error) {
     console.error('Error in handleRequest:', error);
