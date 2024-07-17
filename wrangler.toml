@@ -1,6 +1,7 @@
 name = "make-real-starter"
 main = "worker.js"
 compatibility_date = "2023-11-21"
+compatibility_flags = ["nodejs_compat"]
 
 [site]
 bucket = ".next/static"
