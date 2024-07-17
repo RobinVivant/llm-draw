@@ -12,6 +12,7 @@ import {
 	useValue,
 	Vec,
 } from '@tldraw/tldraw'
+import { useCallback } from 'react'
 
 export type PreviewShape = TLBaseShape<
 	'response',
