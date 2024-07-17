@@ -1,19 +1,19 @@
-let handleRequest;
+import { handleRequest as nextHandleRequest } from '@cloudflare/next-on-pages';
 
-try {
-  ({ handleRequest } = require('@cloudflare/next-on-pages'));
-} catch (error) {
-  console.error('Failed to import @cloudflare/next-on-pages:', error);
-  handleRequest = () => Promise.resolve(new Response('Server configuration error', { status: 500 }));
+async function handleRequest(event) {
+  try {
+    const response = await nextHandleRequest(event);
+    if (!(response instanceof Response)) {
+      console.error('Invalid response from nextHandleRequest');
+      return new Response('Invalid response from server', { status: 500 });
+    }
+    return response;
+  } catch (error) {
+    console.error('Error in handleRequest:', error);
+    return new Response(`Server Error: ${error.message}`, { status: 500 });
+  }
 }
 
 addEventListener('fetch', event => {
-  event.respondWith(
-    Promise.resolve(handleRequest(event))
-      .then(response => response instanceof Response ? response : new Response('Invalid response', { status: 500 }))
-      .catch(error => {
-        console.error('Error in handleRequest:', error);
-        return new Response('Internal Server Error', { status: 500 });
-      })
-  );
+  event.respondWith(handleRequest(event));
 });
