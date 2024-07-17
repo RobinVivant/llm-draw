@@ -1,4 +1,12 @@
-import { handleRequest as nextHandleRequest } from '@cloudflare/next-on-pages';
+let nextHandleRequest;
+
+try {
+  const { handleRequest: importedHandleRequest } = require('@cloudflare/next-on-pages');
+  nextHandleRequest = importedHandleRequest;
+} catch (error) {
+  console.error('Failed to import @cloudflare/next-on-pages:', error);
+  nextHandleRequest = () => new Response('Server configuration error', { status: 500 });
+}
 
 async function handleRequest(event) {
   try {
