@@ -37,8 +37,8 @@ export async function makeReal(editor: Editor, apiKey: string) {
 
 	// Add the grid lines to the SVG
 	const grid = { color: 'red', size: 100, labels: true }
-	const svgWidth = svgElement.width.baseVal.value
-	const svgHeight = svgElement.height.baseVal.value
+	const svgWidth = svgElement.width.animVal.value
+	const svgHeight = svgElement.height.animVal.value
 
 	addGridToSvg(editor, { svg: svgElement, width: svgWidth, height: svgHeight }, grid)
 
