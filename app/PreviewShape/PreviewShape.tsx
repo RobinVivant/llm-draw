@@ -163,7 +163,7 @@ export class PreviewShapeUtil extends BaseBoxShapeUtil<PreviewShape> {
 		shape: PreviewShape,
 		_ctx: SvgExportContext,
 	): Promise<React.ReactElement> {
-		return new Promise((resolve) => {
+		return new Promise((resolve: (value: React.ReactElement) => void) => {
 			const g = document.createElementNS('http://www.w3.org/2000/svg', 'g')
 			if (typeof window === 'undefined') {
 				resolve(React.createElement('g'))
