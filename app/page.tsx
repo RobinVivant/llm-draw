@@ -20,7 +20,7 @@ export default function App() {
 				persistenceKey="make-real"
 				shapeUtils={shapeUtils}
 				components={{
-					ShareZone: MakeRealButton,
+					TopPanel: MakeRealButton,
 				}}
 			>
 				<TldrawLogo />
