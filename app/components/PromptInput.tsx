@@ -9,7 +9,7 @@ export function PromptInput() {
   }, [isExpanded]);
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setPromptValue(e.target.value.trim());
+    setPromptValue(e.target.value);
   }, []);
 
   return (

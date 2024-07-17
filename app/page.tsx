@@ -14,7 +14,7 @@ const handleMakeReal = (editor: Editor) => {
   const apiKeyInput = document.getElementById('openrouter_key_risky_but_cool') as HTMLInputElement;
   const apiKey = apiKeyInput?.value ?? '';
   const promptInput = document.getElementById('prompt-input') as HTMLTextAreaElement;
-  const prompt = promptInput?.value ?? '';
+  const prompt = promptInput?.value.trim() ?? '';
   makeReal(editor, apiKey, prompt);
 };
 
