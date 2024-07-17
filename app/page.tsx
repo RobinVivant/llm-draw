@@ -16,7 +16,14 @@ const shapeUtils = [PreviewShapeUtil] as const satisfies readonly [typeof Previe
 export default function App() {
 	return (
 		<div className="editor">
-			<Tldraw persistenceKey="make-real" shareZone={<MakeRealButton />} shapeUtils={shapeUtils}>
+			<Tldraw
+				persistenceKey="make-real"
+				shareZone={<MakeRealButton />}
+				shapeUtils={shapeUtils}
+				components={{
+					ShareZone: MakeRealButton,
+				}}
+			>
 				<TldrawLogo />
 				<RiskyButCoolAPIKeyInput />
 			</Tldraw>
