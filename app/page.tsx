@@ -20,27 +20,23 @@ export default function App() {
 				persistenceKey="make-real"
 				shapeUtils={shapeUtils}
 				overrides={{
-					toolbar: (editor, toolbar, { tools }) => {
+					actions: (editor, actions) => {
 						return {
-							...toolbar,
-							items: [
-								...toolbar.items,
-								{
-									id: 'make-real',
-									type: 'button',
-									readonlyOk: true,
-									onSelect: () => {
-										const MakeRealButtonComponent = () => <MakeRealButton />
-										editor.setCurrentTool('select')
-										editor.addDialog({
-											component: MakeRealButtonComponent,
-											onClose: () => {
-												editor.deleteDialog('make-real')
-											},
-										})
-									},
+							...actions,
+							'make-real': {
+								id: 'make-real',
+								label: 'Make Real',
+								readonlyOk: true,
+								onSelect: () => {
+									editor.setCurrentTool('select')
+									editor.addDialog({
+										component: MakeRealButton,
+										onClose: () => {
+											editor.deleteDialog('make-real')
+										},
+									})
 								},
-							],
+							},
 						}
 					},
 				}}
