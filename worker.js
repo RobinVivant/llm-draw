@@ -20,6 +20,7 @@ async function handleRequest(event) {
     console.log('Calling nextHandleRequest...');
     const response = await nextHandleRequest(event);
     console.log('Response from nextHandleRequest:', JSON.stringify({
+      body: await response.text(),
       status: response.status,
       headers: Object.fromEntries(response.headers),
     }, null, 2));
