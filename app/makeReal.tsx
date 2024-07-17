@@ -23,13 +23,16 @@ export async function makeReal(editor: Editor, apiKey: string) {
 	})
 
 	// Get an SVG based on the selected shapes
-	const svg = await editor.getSvg(selectedShapes, {
-		scale: 1,
-		background: true,
-	})
+	const svg = await editor.getSvg(
+		selectedShapes.map((shape) => shape.id),
+		{
+			scale: 1,
+			background: true,
+		}
+	)
 
 	if (!svg) {
-		return
+		throw Error('Could not get the SVG.')
 	}
 
 	// Add the grid lines to the SVG
