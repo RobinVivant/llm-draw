@@ -27,7 +27,7 @@ export function MakeRealButton() {
 	}, [editor, addToast])
 
 	return (
-		<button className="makeRealButton" onClick={handleClick}>
+		<button className="makeRealButton" onClick={handleClick} type="button">
 			Make Real
 		</button>
 	)

@@ -23,7 +23,7 @@ export async function getHtmlFromOpenRouter({
 		labels: boolean
 	}
 	previousPreviews?: PreviewShape[]
-	prompt?: string
+	prompt: string | undefined
 }) {
 	if (!apiKey) throw Error('You need to provide an OpenRouter API key (sorry)')
 
@@ -87,7 +87,7 @@ export async function getHtmlFromOpenRouter({
 	}
 
 	// Add the additional prompt if provided
-	if (prompt) {
+	if (prompt && prompt.trim() !== '') {
 		userContent.push({
 			type: 'text',
 			text: `Additional instructions: ${prompt}`,

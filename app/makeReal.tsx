@@ -73,7 +73,7 @@ export async function makeReal(editor: Editor, apiKey: string, prompt: string) {
 			previousPreviews,
 			grid,
 			theme: editor.user.getUserPreferences().isDarkMode ? 'dark' : 'light',
-			prompt,
+			prompt: prompt || undefined,
 		})
 
 		if (!json) {
@@ -105,6 +105,7 @@ export async function makeReal(editor: Editor, apiKey: string, prompt: string) {
 			},
 		})
 
+		console.log(`Prompt: ${prompt}`)
 		console.log(`Response: ${message}`)
 	} catch (e) {
 		// If anything went wrong, delete the shape.
