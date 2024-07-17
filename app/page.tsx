@@ -55,6 +55,7 @@ export default function App() {
 			>
 				<TldrawLogo />
 				<RiskyButCoolAPIKeyInput />
+				<MakeRealButton />
 			</Tldraw>
 		</div>
 	)
