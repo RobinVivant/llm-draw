@@ -91,13 +91,9 @@ export async function getHtmlFromOpenRouter({
 		text: `Please make your result use the ${theme} theme.`,
 	})
 
-	const body: GPT4VCompletionRequest = {
+	const body: Sonnet35CompletionRequest = {
 		model: 'openrouter/anthropic/claude-3.5-sonnet:beta',
-		max_tokens: 8192,
-		temperature: 0,
 		messages,
-		seed: 42,
-		n: 1,
 	}
 
 	let json = null
