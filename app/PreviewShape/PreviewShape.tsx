@@ -169,7 +169,7 @@ export class PreviewShapeUtil extends BaseBoxShapeUtil<PreviewShape> {
 				resolve(React.createElement('g'))
 				return
 			}
-			const windowListener = (event: MessageEvent<{ screenshot: string; shapeid: string }>) => {
+			const windowListener = (event: MessageEvent<{ screenshot?: string; shapeid?: string }>) => {
 				if (event.data.screenshot && event.data.shapeid === shape.id) {
 					const image = document.createElementNS('http://www.w3.org/2000/svg', 'image')
 					image.setAttributeNS('http://www.w3.org/1999/xlink', 'href', event.data.screenshot)
