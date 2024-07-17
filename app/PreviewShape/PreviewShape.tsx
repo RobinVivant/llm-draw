@@ -3,7 +3,6 @@ import {
 	BaseBoxShapeUtil,
 	DefaultSpinner,
 	HTMLContainer,
-	Icon,
 	SvgExportContext,
 	TLBaseShape,
 	Vec,
@@ -12,6 +11,7 @@ import {
 	useIsEditing,
 	useToasts,
 	useValue,
+	IconComponent,
 } from '@tldraw/tldraw'
 
 export type PreviewShape = TLBaseShape<
@@ -125,7 +125,7 @@ export class PreviewShapeUtil extends BaseBoxShapeUtil<PreviewShape> {
 					}}
 					onPointerDown={stopEventPropagation}
 				>
-					<Icon icon="duplicate" />
+					<IconComponent icon="duplicate" />
 				</div>
 				{htmlToUse && (
 					<div
