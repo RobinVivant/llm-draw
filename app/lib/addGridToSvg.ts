@@ -17,6 +17,9 @@ export function addGridToSvg(
 		.split(' ')
 		.map((v) => +v)
 
+	const svgWidth = svg.width.baseVal.value
+	const svgHeight = svg.height.baseVal.value
+
 	const grid = document.createElementNS('http://www.w3.org/2000/svg', 'g')
 	grid.setAttribute('transform', `translate(${x}, ${y})`)
 	grid.setAttribute('id', 'grid')
@@ -30,7 +33,7 @@ export function addGridToSvg(
 	}
 
 	// Add vertical lines
-	for (let i = 0; i < Math.ceil(w / size); i++) {
+	for (let i = 0; i < Math.ceil(svgWidth / size); i++) {
 		if (i > 0) {
 			const verticalLine = document.createElementNS('http://www.w3.org/2000/svg', 'line')
 			verticalLine.setAttribute('x1', `${i * size}`)
@@ -50,7 +53,7 @@ export function addGridToSvg(
 	}
 
 	// Add horizontal lines
-	for (let i = 0; i < Math.ceil(h / size); i++) {
+	for (let i = 0; i < Math.ceil(svgHeight / size); i++) {
 		const horizontalLine = document.createElementNS('http://www.w3.org/2000/svg', 'line')
 		horizontalLine.setAttribute('x1', '0')
 		horizontalLine.setAttribute('y1', `${i * size}`)
