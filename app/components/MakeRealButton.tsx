@@ -7,6 +7,7 @@ export function MakeRealButton() {
 	const { addToast } = useToasts()
 
 	const handleClick = useCallback(async () => {
+		console.log('makeReal function:', makeReal); // Add this line to check if makeReal is imported
 		try {
 			const input = document.getElementById('openrouter_key_risky_but_cool') as HTMLInputElement
 			const apiKey = input?.value ?? null
