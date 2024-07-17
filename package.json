@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy": "wrangler deploy"
   },
   "dependencies": {
     "@tldraw/tldraw": "^2.3.0",
@@ -15,11 +16,13 @@
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@cloudflare/next-on-pages": "^1.8.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8.0.0",
     "eslint-config-next": "14.2.5",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wrangler": "^3.22.1"
   }
 }
