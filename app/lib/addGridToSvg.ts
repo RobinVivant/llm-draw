@@ -17,7 +17,7 @@ export function addGridToSvg(
 		.split(' ')
 		.map((v) => +v)
 
-	const grid = editor.createElement('g')
+	const grid = document.createElementNS('http://www.w3.org/2000/svg', 'g')
 	grid.setAttribute('transform', `translate(${x}, ${y})`)
 	grid.setAttribute('id', 'grid')
 	grid.setAttribute('stroke', color)
