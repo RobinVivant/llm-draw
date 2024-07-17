@@ -71,8 +71,15 @@ body {
 }
 
 .api-key-and-button-container {
+    position: absolute;
+    bottom: 72px;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     align-items: center;
+    z-index: 9999999;
+    width: calc(100% - 40px);
+    max-width: 800px;
     gap: 10px;
 }
 
