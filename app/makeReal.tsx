@@ -23,13 +23,20 @@ export async function makeReal(editor: Editor, apiKey: string) {
 	})
 
 	// Get an SVG based on the selected shapes
+	const mappedShapes = selectedShapes.map((shape) => shape.id)
 	const svgElement = await editor.getSvgElement(
-		selectedShapes.map((shape) => shape.id),
+		mappedShapes,
 		{
 			scale: 1,
 			background: true,
-		},
-	)
+		})
+
+	const svgElementString = await editor.getSvgString(
+		mappedShapes,
+		{
+			scale: 1,
+			background: true,
+		})
 
 	if (!svgElement) {
 		throw Error('Could not get the SVG element.')
@@ -37,17 +44,17 @@ export async function makeReal(editor: Editor, apiKey: string) {
 
 	// Add the grid lines to the SVG
 	const grid = { color: 'red', size: 100, labels: true }
-	const svgWidth = svgElement.width.baseVal.value
-	const svgHeight = svgElement.height.baseVal.value
 
-	addGridToSvg(editor, { svg: svgElement, width: svgWidth, height: svgHeight }, grid)
+	addGridToSvg(editor, { svg: svgElement.svg, width: svgElement.width, height: svgElement.height }, grid)
 
 	// Turn the SVG into a DataUrl
 	const IS_SAFARI = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
-	const blob = await getSvgAsImage(svgElement, IS_SAFARI, {
+	const blob = await getSvgAsImage(editor, svgElementString.svg, {
 		type: 'png',
 		quality: 0.8,
 		scale: 1,
+		width: svgElement.width,
+		height: svgElement.height,
 	})
 	const dataUrl = await blobToBase64(blob!)
 	// downloadDataURLAsFile(dataUrl, 'tldraw.png')
