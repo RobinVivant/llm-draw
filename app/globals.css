@@ -209,7 +209,7 @@ body {
     }
 
     .your-own-api-key__inner {
-        max-width: 300px;
+        width: 300px;
     }
 
     .your-own-api-key input {
