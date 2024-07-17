@@ -16,7 +16,7 @@ export function RiskyButCoolAPIKeyInput() {
 	}, [])
 
 	return (
-		<div className="your-own-api-key">
+		<div className={`your-own-api-key ${breakpoint < 5 ? 'your-own-api-key__mobile' : ''}`}>
 			<div className="your-own-api-key__inner">
 				<div className="input__wrapper">
 					<input

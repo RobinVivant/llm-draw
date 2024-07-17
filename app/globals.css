@@ -49,8 +49,21 @@ body {
     left: 50%;
     transform: translateX(-50%);
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
     z-index: 9999999;
+    width: calc(100% - 20px);
+    max-width: 800px;
+    gap: 10px;
+}
+
+@media (min-width: 768px) {
+    .api-key-and-button-container {
+        flex-direction: row;
+        align-items: center;
+        width: calc(100% - 40px);
+    }
 }
 
 .makeRealButton {
@@ -63,25 +76,17 @@ body {
     border-radius: var(--radius-2);
     cursor: pointer;
     pointer-events: all;
-    margin-left: 10px;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .makeRealButton {
+        width: auto;
+    }
 }
 
 .makeRealButton:hover {
     opacity: 0.95;
-}
-
-.api-key-and-button-container {
-    position: absolute;
-    bottom: 72px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999999;
-    width: calc(100% - 40px);
-    max-width: 800px;
-    gap: 10px;
 }
 
 .prompt-container {
@@ -128,12 +133,12 @@ body {
 .your-own-api-key {
     color: var(--color-text-0);
     pointer-events: none;
+    width: 100%;
 }
 
 .your-own-api-key__inner {
     display: flex;
     flex-direction: row;
-    max-width: 300px;
     width: 100%;
     gap: 4px;
     background-color: var(--color-low);
@@ -150,21 +155,11 @@ body {
     border-radius: 4px;
     color: transparent;
     border: none;
-    font-size: 12px;
+    font-size: 14px;
     background: var(--color-panel);
     width: 100%;
     height: 32px;
     font-family: Inter, sans-serif;
-}
-
-.your-own-api-key__mobile {
-    bottom: 108px;
-}
-
-.your-own-api-key__mobile input {
-    bottom: 108px;
-    font-size: 16px !important;
-    pointer-events: all;
 }
 
 .input__wrapper {
@@ -183,7 +178,7 @@ body {
     padding: 0px 12px;
     z-index: 999999999;
     background-color: none;
-    font-size: 12px;
+    font-size: 14px;
     font-family: Inter, sans-serif;
 }
 
@@ -206,4 +201,22 @@ body {
     align-items: center;
     justify-content: center;
     cursor: pointer;
+}
+
+@media (min-width: 768px) {
+    .your-own-api-key {
+        width: auto;
+    }
+
+    .your-own-api-key__inner {
+        max-width: 300px;
+    }
+
+    .your-own-api-key input {
+        font-size: 12px;
+    }
+
+    .input__wrapper:not(:focus-within)::after {
+        font-size: 12px;
+    }
 }
