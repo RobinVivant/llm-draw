@@ -12,7 +12,7 @@ import {
 	useValue,
 	Vec,
 } from '@tldraw/tldraw'
-import { useCallback } from 'react'
+import React, { useCallback } from 'react'
 
 export type PreviewShape = TLBaseShape<
 	'response',
@@ -162,11 +162,13 @@ export class PreviewShapeUtil extends BaseBoxShapeUtil<PreviewShape> {
 	override toSvg(
 		shape: PreviewShape,
 		_ctx: SvgExportContext,
-	): SVGElement | Promise<SVGElement> | null {
-		const g = document.createElementNS('http://www.w3.org/2000/svg', 'g')
-		// while screenshot is the same as the old one, keep waiting for a new one
+	): Promise<React.ReactElement> {
 		return new Promise((resolve) => {
-			if (window === undefined) return resolve(g)
+			const g = document.createElementNS('http://www.w3.org/2000/svg', 'g')
+			if (typeof window === 'undefined') {
+				resolve(React.createElement('g'))
+				return
+			}
 			const windowListener = (event: MessageEvent<{ screenshot: string; shapeid: string }>) => {
 				if (event.data.screenshot && event.data.shapeid === shape.id) {
 					const image = document.createElementNS('http://www.w3.org/2000/svg', 'image')
@@ -176,15 +178,14 @@ export class PreviewShapeUtil extends BaseBoxShapeUtil<PreviewShape> {
 					g.appendChild(image)
 					window.removeEventListener('message', windowListener)
 					clearTimeout(timeOut)
-					resolve(g)
+					resolve(React.createElement('g', { dangerouslySetInnerHTML: { __html: g.innerHTML } }))
 				}
 			}
 			const timeOut = setTimeout(() => {
-				resolve(g)
 				window.removeEventListener('message', windowListener)
+				resolve(React.createElement('g'))
 			}, 2000)
 			window.addEventListener('message', windowListener)
-			//request new screenshot
 			const firstLevelIframe = document.getElementById(`iframe-1-${shape.id}`) as HTMLIFrameElement
 			if (firstLevelIframe) {
 				firstLevelIframe.contentWindow!.postMessage(
