@@ -17,8 +17,8 @@ export function addGridToSvg(
 		.split(' ')
 		.map((v) => +v)
 
-	const svgWidth = svg.width.baseVal.value
-	const svgHeight = svg.height.baseVal.value
+	const svgWidth = svgData.width
+	const svgHeight = svgData.height
 
 	const grid = document.createElementNS('http://www.w3.org/2000/svg', 'g')
 	grid.setAttribute('transform', `translate(${x}, ${y})`)
